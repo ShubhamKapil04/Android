@@ -34,22 +34,24 @@ class EmpAddActivity : AppCompatActivity() {
 
         addEmp.setOnClickListener {
             var i = 0
+            var success = false
             if(nameInput.text.toString().isNotEmpty() &&
                     emailInput.text.toString().isNotEmpty()&&
                     ageInput.text.isNotEmpty()){
 
                 val emp = EmpModel(i++, nameInput.text.toString(),  emailInput.text.toString(), ageInput.text.toString().toInt())
                 var db = myDatabaseHelper
-                db.addEmp(emp)
+                success = db.addEmp(emp) as Boolean
 
-                // Pass the result back to the main activity
-                val intent = Intent()
-                setResult(Activity.RESULT_OK, intent)
-                finish()
+                if(success){
+                    val intent = Intent(applicationContext, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                    Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(this, "Something went Wrong", Toast.LENGTH_SHORT).show()
+                }
 
-                Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
-            }else{
-                Toast.makeText(this, "Please Enter data", Toast.LENGTH_SHORT).show()
             }
         }
 

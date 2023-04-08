@@ -69,7 +69,7 @@ class MyDatabaseHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME
      * Function to insert the data
      */
 
-    fun addEmp(emp : EmpModel){
+    fun addEmp(emp : EmpModel): Boolean{
         val db = writableDatabase
 
         val contentValue = ContentValues()
@@ -79,6 +79,7 @@ class MyDatabaseHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME
 
         val success = db.insert(TABLE_CONTACTS, null, contentValue)
         db.close()
+        return (Integer.parseInt("$success") != -1)
     }
 
 }
