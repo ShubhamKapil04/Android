@@ -82,4 +82,14 @@ class MyDatabaseHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME
         return (Integer.parseInt("$success") != -1)
     }
 
+    /**
+     * Function to Delete
+     */
+
+    fun deleteEmp(id: Int){
+        val db = writableDatabase
+        db.delete(TABLE_CONTACTS, "_id=?", arrayOf(COLUMN_ID))
+        db.close()
+    }
 }
+
