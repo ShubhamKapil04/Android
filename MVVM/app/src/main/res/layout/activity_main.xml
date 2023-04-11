@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/recyclerView"
+    android:id="@+id/recycler_view"
     tools:context=".MainActivity">
 
     <EditText
@@ -14,26 +14,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:hint="Enter the text here"
-        android:layout_marginLeft="16dp"
-        android:textSize="26dp"/>
-    
+        android:hint="@string/enter_the_text_here"
+        android:layout_marginStart="16dp"
+        android:textSize="26sp"
+        android:importantForAutofill="no" />
+
     <Button
         android:id="@+id/submit_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/notes_input"
         android:layout_margin="16dp"
-        android:text="Submit"
         android:background="@color/design_default_color_primary"
-        android:textColor="#ffffff"/>
+        android:onClick="submitData"
+        android:text="@string/submit"
+        android:textColor="#ffffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/notes_input" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="10dp"
-        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/submit_btn"
         app:layout_constraintVertical_bias="0.0"
