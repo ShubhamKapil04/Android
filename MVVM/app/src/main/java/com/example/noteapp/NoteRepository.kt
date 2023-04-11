@@ -2,7 +2,7 @@ package com.example.noteapp
 
 import androidx.lifecycle.LiveData
 
-class NoteRepository(val noteDao: NoteDao) {
+class NoteRepository(private val noteDao: NoteDao) {
 
     val allNotes: LiveData<List<Note>> = noteDao.getAllNotes()
 

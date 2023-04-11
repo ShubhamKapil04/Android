@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class NoteAdapter(private val context: Context, val listener: INotesAdapter):RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
-    val allNotes = ArrayList<Note>()
+    private val allNotes = ArrayList<Note>()
 
     inner class NoteViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
         val textView: TextView = itemView.findViewById(R.id.textView)
@@ -20,9 +20,12 @@ class NoteAdapter(private val context: Context, val listener: INotesAdapter):Rec
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
-        val inflater = LayoutInflater.from(context)
-        val view = inflater.inflate(R.layout.item_view, parent, false)
-        return NoteViewHolder(view)
+
+        val viewHolder = NoteViewHolder(LayoutInflater.from(context).inflate(R.layout.item_view, parent, false))
+        viewHolder.deleteButton.setOnClickListener{
+            listener.onItemClicked(allNotes[viewHolder.adapterPosition])
+        }
+        return viewHolder
     }
 
     override fun getItemCount(): Int {
@@ -44,7 +47,6 @@ class NoteAdapter(private val context: Context, val listener: INotesAdapter):Rec
 }
 
 interface INotesAdapter{
-
     fun onItemClicked(note: Note)
 
 }

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Note App</string>
+    <string name="enter_the_text_here">Enter the text here</string>
+    <string name="submit">Submit</string>
 </resources>
